@@ -3,6 +3,9 @@ import { LanyardOptions, LanyardResponse } from "./types";
 import useSWR from "swr";
 
 export const useLanyard = (options: LanyardOptions) => {
+	// currently done like this because of NextJS's SSR
+	if (typeof window === "undefined") return;
+
 	const supportsWebSocket = "WebSocket" in window || "MozWebSocket" in window;
 	if (options.socket && !supportsWebSocket)
 		throw new Error("Browser doesn't support WebSocket connections.");
