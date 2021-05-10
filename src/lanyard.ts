@@ -51,7 +51,7 @@ export const useLanyard = (options: LanyardOptions) => {
 			return useSWR<LanyardResponse[]>(
 				`lanyard:${options.userId.join(":")}`,
 				async () => {
-					const responseArray = [];
+					const responseArray: LanyardResponse[] = [];
 
 					for (const id of options.userId) {
 						const req = await fetch(`${API_URL}/users/${id}`);
