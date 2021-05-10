@@ -9,7 +9,7 @@
   <h3 align="center">React Use Lanyard</h3>
 
   <p align="center">
-    Use Lanyard API easily in you React app!
+    Use Lanyard API easily in your React app!
     <br />
     <a href="https://discord.gg/BjEJFwh"><strong>Get support »</strong></a>
     <br />
@@ -83,7 +83,7 @@ Distributed under the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html) Licen
 
 # 🧦 Contributing
 
-Fell free to use GitHub's features.
+Feel free to use GitHub's features.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/my-feature`)
