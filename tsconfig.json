@@ -15,7 +15,7 @@
 		"noImplicitAny": false,
 		"noFallthroughCasesInSwitch": true,
 		"outDir": "dist",
-		"lib": ["es2018","dom"],
+		"lib": ["es2018", "dom"],
 		"importHelpers": true,
 		"removeComments": false,
 		"allowSyntheticDefaultImports": true,
