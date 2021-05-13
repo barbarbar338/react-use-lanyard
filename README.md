@@ -50,26 +50,15 @@ export default App;
 Using with websocket:
 
 ```js
-import { useEffect, useState } from "react";
 import { useLanyard } from "react-use-lanyard";
 
 function App() {
-	const [state, setState] = useState();
-	const lanyard = useLanyard({
+	const { loading, status /*, websocket */ } = useLanyard({
 		userId: "331846231514939392",
 		socket: true,
 	});
 
-	useEffect(() => {
-		lanyard.addEventListener("message", ({ data }) => {
-			const { d: status } = JSON.parse(data);
-			setState(status);
-		});
-
-		return () => lanyard.close();
-	}, []);
-
-	return <pre>{JSON.stringify(state, null, 4)}</pre>;
+	return <pre>{!loading && JSON.stringify(status, null, 4)}</pre>;
 }
 
 export default App;
