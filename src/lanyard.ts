@@ -1,9 +1,18 @@
 import { API_URL, WEBSOCKET_URL } from "./constants";
-import { LanyardData, LanyardOptions, LanyardResponse } from "./types";
+import {
+	LanyardData,
+	LanyardOptions,
+	LanyardResponse,
+	LanyardSWRSingle,
+	LanyardWebsocket,
+	LanyardSWRMultiple,
+} from "./types";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-export const useLanyard = (options: LanyardOptions) => {
+export const useLanyard = (
+	options: LanyardOptions,
+): LanyardSWRSingle | LanyardSWRMultiple | LanyardWebsocket => {
 	if (options.socket) {
 		const [status, setStatus] = useState<LanyardData>();
 		const [websocket, setWebsocket] = useState<WebSocket>();

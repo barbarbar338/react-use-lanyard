@@ -1,3 +1,14 @@
+import { SWRResponse } from "swr";
+
+export interface LanyardWebsocket {
+	loading: boolean;
+	status?: LanyardData;
+	websocket?: WebSocket;
+}
+
+export type LanyardSWRSingle = SWRResponse<LanyardResponse, any>;
+export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
+
 /**
  * Special thanks to @eggsy
  * https://github.com/eggsy/vue-lanyard/blob/main/%40types/lanyard.d.ts
