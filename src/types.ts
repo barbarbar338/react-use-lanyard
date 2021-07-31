@@ -1,13 +1,13 @@
-import { SWRResponse } from "swr";
+import type { SWRResponse } from "swr";
+
+export type LanyardSWRSingle = SWRResponse<LanyardResponse, any>;
+export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
 
 export interface LanyardWebsocket {
 	loading: boolean;
 	status?: LanyardData;
 	websocket?: WebSocket;
 }
-
-export type LanyardSWRSingle = SWRResponse<LanyardResponse, any>;
-export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
 
 /**
  * Special thanks to @eggsy

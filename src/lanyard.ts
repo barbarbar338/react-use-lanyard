@@ -1,5 +1,4 @@
-import { API_URL, WEBSOCKET_URL } from "./constants";
-import {
+import type {
 	LanyardData,
 	LanyardOptions,
 	LanyardResponse,
@@ -7,8 +6,8 @@ import {
 	LanyardSWRSingle,
 	LanyardWebsocket,
 } from "./types";
+import { API_URL, WEBSOCKET_URL } from "./constants";
 import { useEffect, useState } from "react";
-
 import useSWR from "swr";
 
 export const useLanyard = (
