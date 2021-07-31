@@ -26,8 +26,10 @@ export const useLanyard = (
 					"Browser doesn't support WebSocket connections.",
 				);
 
-			let key = "subscribe_to_id";
-			if (typeof options.userId === "object") key = "subscribe_to_ids";
+			const subscription =
+				typeof options.userId === "object"
+					? "subscribe_to_ids"
+					: "subscribe_to_id";
 
 			let heartbeat: NodeJS.Timeout;
 			let socket: WebSocket;
@@ -42,7 +44,7 @@ export const useLanyard = (
 						JSON.stringify({
 							op: 2,
 							d: {
-								[key]: options.userId,
+								[subscription]: options.userId,
 							},
 						}),
 					);
@@ -67,15 +69,14 @@ export const useLanyard = (
 					}
 				});
 
-				socket.addEventListener("close", () => {
-					connectWebsocket();
-				});
+				socket.addEventListener("close", connectWebsocket);
 			};
 
 			connectWebsocket();
 
 			return () => {
 				clearInterval(heartbeat);
+				socket.removeEventListener("close", connectWebsocket);
 				socket.close();
 			};
 		}, []);
@@ -84,7 +85,7 @@ export const useLanyard = (
 	} else {
 		if (typeof options.userId === "string") {
 			return useSWR<LanyardResponse>(
-				`lanyard:${options.userId}`,
+				`lanyard_${options.userId}`,
 				async () => {
 					const req = await fetch(
 						`${API_URL}/users/${options.userId}`,
@@ -98,7 +99,7 @@ export const useLanyard = (
 			);
 		} else {
 			return useSWR<LanyardResponse[]>(
-				`lanyard:${options.userId.join(":")}`,
+				`lanyard_${options.userId.join("_")}`,
 				async () => {
 					const responseArray: LanyardResponse[] = [];
 
