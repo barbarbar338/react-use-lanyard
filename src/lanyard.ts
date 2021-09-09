@@ -10,9 +10,15 @@ import { API_URL, WEBSOCKET_URL } from "./constants";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-export const useLanyard = (
-	options: LanyardOptions,
-): LanyardSWRSingle | LanyardSWRMultiple | LanyardWebsocket => {
+type useLanyard<T> = 
+	T extends { socket: true } ? LanyardWebsocket :
+	T extends { userId: string } ? LanyardSWRSingle :
+	T extends { userId: string[] } ? LanyardSWRMultiple :
+	never
+
+export const useLanyard = <T extends LanyardOptions>(
+	options: T,
+): useLanyard<T> => {
 	if (options.socket) {
 		const [status, setStatus] = useState<LanyardData>();
 		const [websocket, setWebsocket] = useState<WebSocket>();
@@ -81,7 +87,7 @@ export const useLanyard = (
 			};
 		}, []);
 
-		return { websocket, loading, status };
+		return { websocket, loading, status } as useLanyard<T>;
 	} else {
 		if (typeof options.userId === "string") {
 			return useSWR<LanyardResponse>(
@@ -96,7 +102,7 @@ export const useLanyard = (
 
 					return body;
 				},
-			);
+			) as useLanyard<T>;
 		} else {
 			return useSWR<LanyardResponse[]>(
 				`lanyard_${options.userId.join("_")}`,
@@ -114,7 +120,7 @@ export const useLanyard = (
 
 					return responseArray;
 				},
-			);
+			) as useLanyard<T>;
 		}
 	}
 };
