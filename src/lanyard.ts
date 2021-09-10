@@ -10,11 +10,13 @@ import { API_URL, WEBSOCKET_URL } from "./constants";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-type useLanyard<T> = 
-	T extends { socket: true } ? LanyardWebsocket :
-	T extends { userId: string } ? LanyardSWRSingle :
-	T extends { userId: string[] } ? LanyardSWRMultiple :
-	never
+type useLanyard<T> = T extends { socket: true }
+	? LanyardWebsocket
+	: T extends { userId: string }
+	? LanyardSWRSingle
+	: T extends { userId: string[] }
+	? LanyardSWRMultiple
+	: never;
 
 export const useLanyard = <T extends LanyardOptions>(
 	options: T,
@@ -41,6 +43,8 @@ export const useLanyard = <T extends LanyardOptions>(
 			let socket: WebSocket;
 
 			const connectWebsocket = () => {
+				if (heartbeat) clearInterval(heartbeat);
+
 				socket = new WebSocket(WEBSOCKET_URL);
 				setWebsocket(socket);
 				setLoading(true);
