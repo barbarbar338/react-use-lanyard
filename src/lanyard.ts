@@ -22,7 +22,7 @@ export const useLanyard = <T extends LanyardOptions>(
 	options: T,
 ): useLanyard<T> => {
 	if (options.socket) {
-		const [status, setStatus] = useState<LanyardData>();
+		const [status, setStatus] = useState<LanyardData | Record<string, LanyardData>>();
 		const [websocket, setWebsocket] = useState<WebSocket>();
 		const [loading, setLoading] = useState(true);
 
@@ -71,7 +71,7 @@ export const useLanyard = <T extends LanyardOptions>(
 				socket.addEventListener("message", ({ data }) => {
 					const { t, d } = JSON.parse(data) as {
 						t: "INIT_STATE" | "PRESENCE_UPDATE";
-						d: LanyardData;
+						d: LanyardData | Record<string, LanyardData>;
 					};
 					if (t === "INIT_STATE" || t === "PRESENCE_UPDATE") {
 						setStatus(d || ({} as LanyardData));
