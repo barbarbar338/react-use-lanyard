@@ -5,7 +5,7 @@ export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
 
 export interface LanyardWebsocket {
 	loading: boolean;
-	status?: LanyardData;
+	status?: LanyardData | Record<string, LanyardData>;
 	websocket?: WebSocket;
 }
 
