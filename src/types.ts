@@ -34,10 +34,15 @@ export interface LanyardData {
 	spotify?: Spotify;
 	listening_to_spotify: boolean;
 	discord_user: Discorduser;
-	discord_status: string;
+	discord_status: "online" | "idle" | "dnd" | "offline";
+	kv?: Kv;
 	activities: Activity[];
 	active_on_discord_mobile: boolean;
 	active_on_discord_desktop: boolean;
+}
+
+export interface Kv {
+	[key: string]: string;
 }
 
 export interface Spotify {
