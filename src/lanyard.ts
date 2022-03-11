@@ -4,7 +4,7 @@ import type {
 	LanyardResponse,
 	LanyardGeneric,
 } from "./types";
-import { API_URL, WEBSOCKET_URL } from "./constants";
+import { API_URL, HEARTBEAT_INTERVAL, WEBSOCKET_URL } from "./constants";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
@@ -55,7 +55,7 @@ export const useLanyard = <T extends LanyardOptions>(
 								op: 3,
 							}),
 						);
-					}, 30000);
+					}, HEARTBEAT_INTERVAL);
 				});
 
 				socket.addEventListener("message", ({ data }) => {
