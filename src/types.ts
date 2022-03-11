@@ -9,6 +9,14 @@ export interface LanyardWebsocket {
 	websocket?: WebSocket;
 }
 
+export type LanyardGeneric<T> = T extends { socket: true }
+	? LanyardWebsocket
+	: T extends { userId: string }
+	? LanyardSWRSingle
+	: T extends { userId: string[] }
+	? LanyardSWRMultiple
+	: never;
+
 /**
  * Special thanks to @eggsy
  * https://github.com/eggsy/vue-lanyard/blob/main/%40types/lanyard.d.ts

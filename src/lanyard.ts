@@ -2,25 +2,15 @@ import type {
 	LanyardData,
 	LanyardOptions,
 	LanyardResponse,
-	LanyardSWRMultiple,
-	LanyardSWRSingle,
-	LanyardWebsocket,
+	LanyardGeneric,
 } from "./types";
 import { API_URL, WEBSOCKET_URL } from "./constants";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-type useLanyard<T> = T extends { socket: true }
-	? LanyardWebsocket
-	: T extends { userId: string }
-	? LanyardSWRSingle
-	: T extends { userId: string[] }
-	? LanyardSWRMultiple
-	: never;
-
 export const useLanyard = <T extends LanyardOptions>(
 	options: T,
-): useLanyard<T> => {
+): LanyardGeneric<T> => {
 	if (options.socket) {
 		const [status, setStatus] = useState<LanyardData>();
 		const [websocket, setWebsocket] = useState<WebSocket>();
@@ -91,7 +81,7 @@ export const useLanyard = <T extends LanyardOptions>(
 			};
 		}, []);
 
-		return { websocket, loading, status } as useLanyard<T>;
+		return { websocket, loading, status } as LanyardGeneric<T>;
 	} else {
 		if (typeof options.userId === "string") {
 			return useSWR<LanyardResponse>(
@@ -106,7 +96,7 @@ export const useLanyard = <T extends LanyardOptions>(
 
 					return body;
 				},
-			) as useLanyard<T>;
+			) as LanyardGeneric<T>;
 		} else {
 			return useSWR<LanyardResponse[]>(
 				`lanyard_${options.userId.join("_")}`,
@@ -124,7 +114,7 @@ export const useLanyard = <T extends LanyardOptions>(
 
 					return responseArray;
 				},
-			) as useLanyard<T>;
+			) as LanyardGeneric<T>;
 		}
 	}
 };
