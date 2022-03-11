@@ -95,6 +95,7 @@ export interface Timestamps {
 
 export interface Emoji {
 	name: string;
+	id?: string;
 }
 
 export interface Discorduser {
