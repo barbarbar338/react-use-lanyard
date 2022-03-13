@@ -36,7 +36,7 @@ import { useLanyard } from "react-use-lanyard";
 
 function App() {
 	const lanyard = useLanyard({
-		userId: "331846231514939392",
+		userId: "952574663916154960",
 	});
 
 	return (
@@ -54,7 +54,7 @@ import { useLanyard } from "react-use-lanyard";
 
 function App() {
 	const { loading, status /*, websocket */ } = useLanyard({
-		userId: "331846231514939392",
+		userId: "952574663916154960",
 		socket: true,
 	});
 
