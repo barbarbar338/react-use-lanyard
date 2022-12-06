@@ -1,16 +1,18 @@
-import type {
-	LanyardData,
-	LanyardOptions,
-	LanyardResponse,
-	LanyardGeneric,
-} from "./types";
-import { API_URL, HEARTBEAT_INTERVAL, WEBSOCKET_URL } from "./constants";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import { API_URL, HEARTBEAT_INTERVAL } from "./constants";
+import type {
+	LanyardData,
+	LanyardGeneric,
+	LanyardOptions,
+	LanyardResponse,
+} from "./types";
 
 export const useLanyard = <T extends LanyardOptions>(
 	options: T,
 ): LanyardGeneric<T> => {
+	const apiUrl = options.apiUrl || API_URL;
+
 	if (options.socket) {
 		const [status, setStatus] = useState<LanyardData>();
 		const [websocket, setWebsocket] = useState<WebSocket>();
@@ -35,7 +37,7 @@ export const useLanyard = <T extends LanyardOptions>(
 			const connectWebsocket = () => {
 				if (heartbeat) clearInterval(heartbeat);
 
-				socket = new WebSocket(WEBSOCKET_URL);
+				socket = new WebSocket(`wss://${apiUrl}/socket`);
 				setWebsocket(socket);
 				setLoading(true);
 
@@ -88,7 +90,7 @@ export const useLanyard = <T extends LanyardOptions>(
 				`lanyard_${options.userId}`,
 				async () => {
 					const req = await fetch(
-						`${API_URL}/users/${options.userId}`,
+						`https://${apiUrl}/v1/users/${options.userId}`,
 					);
 
 					const body = (await req.json()) as LanyardResponse;
@@ -104,7 +106,9 @@ export const useLanyard = <T extends LanyardOptions>(
 					const responseArray: LanyardResponse[] = [];
 
 					for (const id of options.userId) {
-						const req = await fetch(`${API_URL}/users/${id}`);
+						const req = await fetch(
+							`https://${apiUrl}/v1/users/${id}`,
+						);
 
 						const body = (await req.json()) as LanyardResponse;
 						if (body.error) throw new Error(body.error.message);

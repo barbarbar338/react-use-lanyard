@@ -25,6 +25,7 @@ export type LanyardGeneric<T> = T extends { socket: true }
 export interface LanyardOptions {
 	userId: string | string[];
 	socket?: boolean;
+	apiUrl?: string;
 }
 
 export interface LanyardResponse {

@@ -64,6 +64,47 @@ function App() {
 export default App;
 ```
 
+# 🤞 Using Self-Hosted API
+
+You can use this package to connect to your own self-hosted Lanyard API. To do this, you need to pass the `apiUrl` option to the `useLanyard` hook. See [Lanyard self-hosting guide](https://github.com/Phineas/lanyard#self-host-with-docker) for more information.
+
+Using without websocket:
+
+```js
+import { useLanyard } from "react-use-lanyard";
+
+function App() {
+	const lanyard = useLanyard({
+		userId: "952574663916154960",
+		apiUrl: "lanyard.338.rocks",
+	});
+
+	return (
+		<pre>{!lanyard.isValidating && JSON.stringify(lanyard, null, 4)}</pre>
+	);
+}
+
+export default App;
+```
+
+Using with websocket:
+
+```js
+import { useLanyard } from "react-use-lanyard";
+
+function App() {
+	const { loading, status /*, websocket */ } = useLanyard({
+		userId: "952574663916154960",
+		socket: true,
+		apiUrl: "lanyard.338.rocks",
+	});
+
+	return <pre>{!loading && JSON.stringify(status, null, 4)}</pre>;
+}
+
+export default App;
+```
+
 # 📄 License
 
 Copyright © 2021 [Barış DEMİRCİ](https://github.com/barbarbar338).
