@@ -64,6 +64,31 @@ function App() {
 export default App;
 ```
 
+# 🔐 KV Support
+
+You can create/delete KV pairs using this package.
+
+```js
+import { set, del } from "react-use-lanyard";
+
+// Set KV pair
+await set({
+	apiKey: "your_api_key", // get it using .apikey command on lanyard bot
+	userId: "your_user_id",
+	key: "test_key",
+	value: "test value",
+	// apiUrl: "lanyard.338.rocks", // if you are using self-hosted api, not required by default
+});
+
+// Delete KV pair
+await del({
+	apiKey: "your_api_key",
+	userId: "your_user_id",
+	key: "test_key",
+	// apiUrl: "lanyard.338.rocks", // if you are using self-hosted api, not required by default
+});
+```
+
 # 🤞 Using Self-Hosted API
 
 You can use this package to connect to your own self-hosted Lanyard API. To do this, you need to pass the `apiUrl` option to the `useLanyard` hook. See [Lanyard self-hosting guide](https://github.com/Phineas/lanyard#self-host-with-docker) for more information.

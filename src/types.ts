@@ -1,5 +1,16 @@
 import type { SWRResponse } from "swr";
 
+export interface IDelete {
+	key: string;
+	userId: string;
+	apiKey: string;
+	apiUrl?: string;
+}
+
+export interface ISet extends IDelete {
+	value: string;
+}
+
 export type LanyardSWRSingle = SWRResponse<LanyardResponse, any>;
 export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
 
