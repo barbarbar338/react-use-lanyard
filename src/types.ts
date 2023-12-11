@@ -127,6 +127,7 @@ export interface Emoji {
 
 export interface DiscordUser {
 	username: string;
+	global_name: string | null;
 	public_flags: number;
 	id: string;
 	discriminator: string;
