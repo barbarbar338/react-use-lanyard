@@ -22,26 +22,26 @@
 		"update": "taze latest -w"
 	},
 	"devDependencies": {
-		"@types/node": "^18.14.2",
-		"@types/react": "^18.0.28",
-		"@types/react-dom": "^18.0.11",
-		"@typescript-eslint/eslint-plugin": "^5.54.0",
-		"@typescript-eslint/parser": "^5.54.0",
-		"eslint": "^8.35.0",
-		"eslint-config-prettier": "^8.6.0",
-		"eslint-plugin-import": "^2.27.5",
-		"prettier": "^2.8.4",
+		"@types/node": "^20.10.4",
+		"@types/react": "^18.2.43",
+		"@types/react-dom": "^18.2.17",
+		"@typescript-eslint/eslint-plugin": "^6.13.2",
+		"@typescript-eslint/parser": "^6.13.2",
+		"eslint": "^8.55.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-import": "^2.29.0",
+		"prettier": "^3.1.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"taze": "^0.8.5",
-		"ts-node": "^10.9.1",
-		"typescript": "^4.9.5"
+		"taze": "^0.13.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
 	},
 	"peerDependencies": {
 		"react": ">=16"
 	},
 	"dependencies": {
-		"swr": "^2.0.4",
-		"tslib": "^2.5.0"
+		"swr": "^2.2.4",
+		"tslib": "^2.6.2"
 	}
 }
