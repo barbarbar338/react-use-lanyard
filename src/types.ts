@@ -85,6 +85,7 @@ export interface Activity {
 	state: string;
 	name: string;
 	id: string;
+	url: string;
 	flags?: number;
 	emoji?: Emoji;
 	created_at: number;
