@@ -100,12 +100,7 @@ export interface Activity {
 
 export interface Party {
 	id: string;
-	size?: PartySize;
-}
-
-export interface PartySize {
-	current_size: number;
-	max_size: number;
+	size?: [number, number];
 }
 
 export interface Assets {
