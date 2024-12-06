@@ -128,4 +128,9 @@ export interface DiscordUser {
 	discriminator: string;
 	bot: boolean;
 	avatar: string;
+	avatar_decoration_data?: {
+		sku_id: string;
+		asset: string;
+		expires_at: number;
+	} | null;
 }
