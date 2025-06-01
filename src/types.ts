@@ -1,32 +1,32 @@
 import type { SWRResponse } from "swr";
 
 export interface IDelete {
-	key: string;
-	userId: string;
-	apiKey: string;
-	apiUrl?: string;
+  key: string;
+  userId: string;
+  apiKey: string;
+  apiUrl?: string;
 }
 
 export interface ISet extends IDelete {
-	value: string;
+  value: string;
 }
 
 export type LanyardSWRSingle = SWRResponse<LanyardResponse, any>;
 export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
 
 export interface LanyardWebsocket {
-	loading: boolean;
-	status?: LanyardData;
-	websocket?: WebSocket;
+  loading: boolean;
+  status?: LanyardData;
+  websocket?: WebSocket;
 }
 
 export type LanyardGeneric<T> = T extends { socket: true }
-	? LanyardWebsocket
-	: T extends { userId: string }
-	? LanyardSWRSingle
-	: T extends { userId: string[] }
-	? LanyardSWRMultiple
-	: never;
+  ? LanyardWebsocket
+  : T extends { userId: string }
+  ? LanyardSWRSingle
+  : T extends { userId: string[] }
+  ? LanyardSWRMultiple
+  : never;
 
 /**
  * Special thanks to @eggsy
@@ -34,103 +34,120 @@ export type LanyardGeneric<T> = T extends { socket: true }
  */
 
 export interface LanyardOptions {
-	userId: string | string[];
-	socket?: boolean;
-	apiUrl?: string;
+  userId: string | string[];
+  socket?: boolean;
+  apiUrl?: string;
 }
 
 export interface LanyardResponse {
-	success: boolean;
-	data: LanyardData;
-	error?: LanyardError;
+  success: boolean;
+  data: LanyardData;
+  error?: LanyardError;
 }
 
 export interface LanyardError {
-	message: string;
-	code: string;
+  message: string;
+  code: string;
 }
 
 export interface LanyardData {
-	spotify?: Spotify;
-	listening_to_spotify: boolean;
-	discord_user: DiscordUser;
-	discord_status: "online" | "idle" | "dnd" | "offline";
-	kv?: Kv;
-	activities: Activity[];
-	active_on_discord_web: boolean;
-	active_on_discord_mobile: boolean;
-	active_on_discord_desktop: boolean;
+  spotify: Spotify | null;
+  listening_to_spotify: boolean;
+  discord_user: DiscordUser;
+  discord_status: "online" | "idle" | "dnd" | "offline";
+  kv?: Kv;
+  activities: Activity[];
+  active_on_discord_web: boolean;
+  active_on_discord_mobile: boolean;
+  active_on_discord_desktop: boolean;
+  active_on_discord_embedded: boolean;
 }
 
 export interface Kv {
-	[key: string]: string;
+  [key: string]: string;
 }
 
 export interface Spotify {
-	track_id: string;
-	timestamps: Timestamps;
-	song: string;
-	artist: string;
-	album_art_url: string;
-	album: string;
+  track_id: string;
+  timestamps: Timestamps;
+  song: string;
+  artist: string;
+  album_art_url: string;
+  album: string;
 }
 
 export interface Timestamps {
-	start: number;
-	end: number;
+  start: number;
+  end: number;
 }
 
 export interface Activity {
-	type: number;
-	state: string;
-	name: string;
-	id: string;
-	flags?: number;
-	emoji?: Emoji;
-	created_at: number;
-	application_id?: string;
-	timestamps?: Timestamps;
-	sync_id?: string;
-	session_id?: string;
-	party?: Party;
-	details?: string;
-	buttons?: string[];
-	assets?: Assets;
+  type: number;
+  state: string;
+  name: string;
+  id: string;
+  flags?: number;
+  emoji?: Emoji;
+  created_at: number;
+  application_id?: string;
+  timestamps?: Timestamps;
+  sync_id?: string;
+  session_id?: string;
+  party?: Party;
+  details?: string;
+  buttons?: string[];
+  assets?: Assets;
 }
 
 export interface Party {
-	id: string;
-	size?: [number, number];
+  id: string;
+  size?: [number, number];
 }
 
 export interface Assets {
-	small_text: string;
-	small_image: string;
-	large_text: string;
-	large_image: string;
+  small_text: string;
+  small_image: string;
+  large_text: string;
+  large_image: string;
 }
 
 export interface Timestamps {
-	start: number;
+  start: number;
 }
 
 export interface Emoji {
-	name: string;
-	id?: string;
-	animated?: boolean;
+  name: string;
+  id?: string;
+  animated?: boolean;
 }
 
 export interface DiscordUser {
-	username: string;
-	global_name: string | null;
-	public_flags: number;
-	id: string;
-	discriminator: string;
-	bot: boolean;
-	avatar: string;
-	avatar_decoration_data?: {
-		sku_id: string;
-		asset: string;
-		expires_at: number;
-	} | null;
+  username: string;
+  global_name: string | null;
+  public_flags: number;
+  id: string;
+  discriminator: string;
+  bot: boolean;
+  avatar: string;
+  avatar_decoration_data?: {
+    sku_id: string;
+    asset: string;
+    expires_at: number;
+  } | null;
+  clan: null; // clan object deprecated
+  primary_guild: {
+    tag: string;
+    identity_guild_id: string;
+    badge: string;
+    identity_enabled: boolean;
+  } | null;
+  collectibles: {
+    nameplate: {
+      label: string;
+      sku_id: string;
+      asset: string;
+      expires_at: string | null;
+      palette: string;
+    };
+  } | null;
 }
