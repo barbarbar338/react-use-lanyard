@@ -135,19 +135,19 @@ export interface DiscordUser {
 		expires_at: number;
 	} | null;
   	clan: null; // clan object deprecated
-  	primary_guild: {
-    	tag: string;
-    	identity_guild_id: string;
-    	badge: string;
-    	identity_enabled: boolean;
- 	} | null;
-  	collectibles: {
-    	nameplate: {
-      		label: string;
-      		sku_id: string;
-      		asset: string;
-      		expires_at: string | null;
-      		palette: string;
-    	};
-  	} | null;
+	primary_guild: {
+		tag: string;
+		identity_guild_id: string;
+		badge: string;
+		identity_enabled: boolean;
+	} | null;
+	collectibles: {
+		nameplate: {
+			label: string;
+			sku_id: string;
+			asset: string;
+			expires_at: string | null;
+			palette: string;
+		};
+	} | null;
 }
