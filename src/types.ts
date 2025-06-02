@@ -50,29 +50,34 @@ export interface LanyardError {
 	code: string;
 }
 
-export interface LanyardData {
-	spotify?: Spotify;
-	listening_to_spotify: boolean;
+export type LanyardData = {
 	discord_user: DiscordUser;
 	discord_status: "online" | "idle" | "dnd" | "offline";
-	kv?: Kv;
+	kv: Kv;
 	activities: Activity[];
 	active_on_discord_web: boolean;
 	active_on_discord_mobile: boolean;
 	active_on_discord_desktop: boolean;
-}
+	active_on_discord_embedded: boolean;
+} & Spotify
 
 export interface Kv {
 	[key: string]: string;
 }
 
-export interface Spotify {
-	track_id: string;
-	timestamps: Timestamps;
-	song: string;
-	artist: string;
-	album_art_url: string;
-	album: string;
+export type Spotify = {
+	lintening_to_spotify: true,
+	spotify: {
+		track_id: string;
+		timestamps: Timestamps;
+		song: string;
+		artist: string;
+		album_art_url: string;
+		album: string;
+	}
+} | {
+	listening_to_spotify: false,
+	spotify: null
 }
 
 export interface Timestamps {
@@ -132,5 +137,21 @@ export interface DiscordUser {
 		sku_id: string;
 		asset: string;
 		expires_at: number;
+	} | null;
+  	clan: null; // clan object deprecated
+	primary_guild: {
+		tag: string;
+		identity_guild_id: string;
+		badge: string;
+		identity_enabled: boolean;
+	} | null;
+	collectibles: {
+		nameplate: {
+			label: string;
+			sku_id: string;
+			asset: string;
+			expires_at: string | null;
+			palette: string;
+		};
 	} | null;
 }
