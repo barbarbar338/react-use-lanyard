@@ -67,7 +67,7 @@ export interface Kv {
 
 export type Spotify =
 	| {
-			lintening_to_spotify: true;
+			listening_to_spotify: true;
 			spotify: {
 				track_id: string;
 				timestamps: Timestamps;
