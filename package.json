@@ -5,7 +5,7 @@
 	"typings": "dist",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/barbarbar338/react-use-lanyard"
+		"url": "git+https://github.com/barbarbar338/react-use-lanyard.git"
 	},
 	"author": {
 		"email": "hi@338.rocks",
