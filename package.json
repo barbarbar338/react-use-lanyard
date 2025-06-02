@@ -1,6 +1,6 @@
 {
 	"name": "react-use-lanyard",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"main": "dist",
 	"typings": "dist",
 	"repository": {
@@ -18,7 +18,7 @@
 		"prebuild": "rimraf dist",
 		"build": "tsc",
 		"format": "prettier --write .",
-		"lint": "eslint --fix .",
+		"lint": "eslint --fix ./src/**/*",
 		"update": "taze latest -w"
 	},
 	"devDependencies": {

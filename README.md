@@ -24,8 +24,8 @@
 
 # 📦 Installation
 
--   Using yarn: `yarn add react-use-lanyard`
--   Using npm: `npm i react-use-lanyard`
+- Using yarn: `yarn add react-use-lanyard`
+- Using npm: `npm i react-use-lanyard`
 
 # 🤓 Usage
 
@@ -153,11 +153,10 @@ Give a ⭐️ if this project helped you!
 
 # 📞 Contact
 
--   Mail: demirci.baris38@gmail.com
--   Discord: https://discord.gg/BjEJFwh
--   Instagram: https://www.instagram.com/ben_baris.d/
+- Mail: hi@338.rocks
+- Discord: https://discord.gg/BjEJFwh
 
 # ✨ Special Thanks
 
--   [Phineas](https://github.com/Phineas) - Creator of [Lanyard API](https://github.com/Phineas/lanyard)
--   [Eggsy](https://github.com/eggsy) - Creator of [vue-lanyard](https://www.npmjs.com/package/@eggsydev/vue-lanyard)
+- [Phineas](https://github.com/Phineas) - Creator of [Lanyard API](https://github.com/Phineas/lanyard)
+- [Eggsy](https://github.com/eggsy) - Creator of [vue-lanyard](https://www.npmjs.com/package/@eggsydev/vue-lanyard)

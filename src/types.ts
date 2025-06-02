@@ -23,10 +23,10 @@ export interface LanyardWebsocket {
 export type LanyardGeneric<T> = T extends { socket: true }
 	? LanyardWebsocket
 	: T extends { userId: string }
-	? LanyardSWRSingle
-	: T extends { userId: string[] }
-	? LanyardSWRMultiple
-	: never;
+		? LanyardSWRSingle
+		: T extends { userId: string[] }
+			? LanyardSWRMultiple
+			: never;
 
 /**
  * Special thanks to @eggsy
@@ -59,26 +59,28 @@ export type LanyardData = {
 	active_on_discord_mobile: boolean;
 	active_on_discord_desktop: boolean;
 	active_on_discord_embedded: boolean;
-} & Spotify
+} & Spotify;
 
 export interface Kv {
 	[key: string]: string;
 }
 
-export type Spotify = {
-	lintening_to_spotify: true,
-	spotify: {
-		track_id: string;
-		timestamps: Timestamps;
-		song: string;
-		artist: string;
-		album_art_url: string;
-		album: string;
-	}
-} | {
-	listening_to_spotify: false,
-	spotify: null
-}
+export type Spotify =
+	| {
+			lintening_to_spotify: true;
+			spotify: {
+				track_id: string;
+				timestamps: Timestamps;
+				song: string;
+				artist: string;
+				album_art_url: string;
+				album: string;
+			};
+	  }
+	| {
+			listening_to_spotify: false;
+			spotify: null;
+	  };
 
 export interface Timestamps {
 	start: number;
@@ -138,7 +140,7 @@ export interface DiscordUser {
 		asset: string;
 		expires_at: number;
 	} | null;
-  	clan: null; // clan object deprecated
+	clan: null; // clan object deprecated
 	primary_guild: {
 		tag: string;
 		identity_guild_id: string;
