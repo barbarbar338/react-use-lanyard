@@ -11,8 +11,8 @@ export interface ISet extends IDelete {
 	value: string;
 }
 
-export type LanyardSWRSingle = SWRResponse<LanyardResponse, any>;
-export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], any>;
+export type LanyardSWRSingle = SWRResponse<LanyardResponse, Error>;
+export type LanyardSWRMultiple = SWRResponse<LanyardResponse[], Error>;
 
 export interface LanyardWebsocket {
 	loading: boolean;
